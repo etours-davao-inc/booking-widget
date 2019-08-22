@@ -4,7 +4,10 @@ module.exports = {
   },
   output: {
     filename: '[name]-booking.js',
-    path: __dirname + '/dist'
+    path: __dirname + '/dist',
+    library: "bookingForm",
+    libraryTarget: 'umd',
+    libraryExport: 'default'
   },
   module: {
     rules: [
