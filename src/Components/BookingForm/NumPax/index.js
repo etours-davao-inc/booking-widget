@@ -1,7 +1,7 @@
 import React from 'react';
 import PaxSection from './PaxSection';
 
-import { ButtonGroup, Button } from '../../../../Buttons';
+import { ButtonGroup, Button } from '../../Buttons';
 import ScrolledYWrapper from '../ScrolledYWrapper';
 
 import { Consumer } from '../Context';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Portal from '../../../../Templates/Portal';
+import Portal from '../Portal';
 
 import {Consumer} from './Context';
 

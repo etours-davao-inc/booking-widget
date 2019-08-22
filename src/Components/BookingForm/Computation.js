@@ -3,7 +3,7 @@ import Currency from 'react-currency-formatter';
 
 import styled from 'styled-components';
 
-import { ButtonGroup, Button } from '../../../Buttons';
+import { ButtonGroup, Button } from '../Buttons';
 import ScrolledYWrapper from './ScrolledYWrapper';
 
 import { Consumer } from './Context';

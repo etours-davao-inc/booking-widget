@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Consumer } from './Context';
 
-import { ButtonGroup, Button } from '../../../Buttons';
+import { ButtonGroup, Button } from '../Buttons';
 import ScrolledYWrapper from './ScrolledYWrapper';
 
 const Confirmation = () => {

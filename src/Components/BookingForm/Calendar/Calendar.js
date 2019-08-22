@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ButtonGroup, Button } from '../../../../Buttons';
+import { ButtonGroup, Button } from '../../Buttons';
 import CalendarWrapper from './CalendarWrapper';
 import ScrolledYWrapper from '../ScrolledYWrapper';
 
