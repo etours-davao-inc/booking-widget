@@ -11,11 +11,22 @@
   "author": "Tom Claudio",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^2.0.0",
+    "firebase-etours-booking-crud": "/Users/t0mclaudio/Documents/Projects/etours-website/firebase-etours-booking-crud",
+    "numeral": "^2.0.6",
+    "price-compute-js": "/Users/t0mclaudio/Documents/Projects/etours-website/total-price-calculator",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-currency-formatter": "^1.1.0",
+    "react-day-picker": "^7.3.2",
+    "react-dom": "^16.9.0",
+    "react-responsive": "^7.0.0",
+    "styled-components": "^4.3.2",
+    "tour-dates-utility": "/Users/t0mclaudio/Documents/Projects/etours-website/tour-dates-utility",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
