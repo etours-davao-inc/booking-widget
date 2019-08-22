@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import isEmail from 'validator/lib/isEmail';
-import { format } from 'date-fns';
 
 import { Calculate } from 'price-compute-js';
 import postReservation  from './postReservation';
