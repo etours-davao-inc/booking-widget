@@ -1,4 +1,11 @@
 module.exports = {
+  entry: {
+    daytour: './src/index.js'
+  },
+  output: {
+    filename: '[name]-booking.js',
+    path: __dirname + '/dist'
+  },
   module: {
     rules: [
       {
