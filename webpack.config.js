@@ -1,9 +1,9 @@
 module.exports = {
   entry: {
-    daytour: './src/index.js'
+    bookingForm: './src/index.js'
   },
   output: {
-    filename: '[name]-booking.js',
+    filename: '[name].js',
     path: __dirname + '/dist',
     library: "bookingForm",
     libraryTarget: 'umd',
