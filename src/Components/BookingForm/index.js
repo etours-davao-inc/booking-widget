@@ -6,6 +6,7 @@ import Responsive from 'react-responsive';
 import { Provider } from './Context';
 import BookingFormMobileDrawer from './BookingFormMobileDrawer';
 import CurrentBookingModule from './CurrentBookingModule';
+import ErrorBoundary from '../ErrorBoundary';
 
 const Mobile = props => <Responsive {...props} maxWidth={991} />
 const Desktop = props => <Responsive {...props} minWidth={992} />
@@ -31,26 +32,28 @@ const BookingFormLandScapeWrapper = styled.span`
 
 export default (props) => {
   return (
-    <Provider data={props.data}>
-      <Desktop>
-        <BookingFormWrapper>
-          <CurrentBookingModule />
-        </BookingFormWrapper>
-      </Desktop>
-      <Mobile>
-        <BookingFormMobileDrawer>
+    <ErrorBoundary>
+      <Provider data={props.data}>
+        <Desktop>
           <BookingFormWrapper>
             <CurrentBookingModule />
           </BookingFormWrapper>
-        </BookingFormMobileDrawer>
-      </Mobile>
-      <MobileLandscape>
-        <BookingFormMobileDrawer>
-          <BookingFormLandScapeWrapper>
-            <CurrentBookingModule />
-          </BookingFormLandScapeWrapper>
-        </BookingFormMobileDrawer>
-      </MobileLandscape>
-    </Provider>
+        </Desktop>
+        <Mobile>
+          <BookingFormMobileDrawer>
+            <BookingFormWrapper>
+              <CurrentBookingModule />
+            </BookingFormWrapper>
+          </BookingFormMobileDrawer>
+        </Mobile>
+        <MobileLandscape>
+          <BookingFormMobileDrawer>
+            <BookingFormLandScapeWrapper>
+              <CurrentBookingModule />
+            </BookingFormLandScapeWrapper>
+          </BookingFormMobileDrawer>
+        </MobileLandscape>
+      </Provider>
+    </ErrorBoundary>
   );
 }
