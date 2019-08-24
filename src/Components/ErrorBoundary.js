@@ -21,8 +21,8 @@ export default class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div className="responsive-widths my-2 rounded d-flex justify-content-center align-items-center">
-          <h1>Something went wrong...</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <p>Something went wrong...</p>
         </div>
       )
     }
