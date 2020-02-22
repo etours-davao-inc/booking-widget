@@ -8,7 +8,7 @@ import postReservation  from './postReservation';
 import { initDayRangeValues, setDayRange, getStartDate, setOptionPaymentDate } from 'tour-dates-utility';
 import { DayTour, MultiDay, MultiDayWithHotel } from './Modules';
 
-const BookingContext = React.createContext();
+export const BookingContext = React.createContext();
 
 export class Provider extends Component {
   constructor(props) {
