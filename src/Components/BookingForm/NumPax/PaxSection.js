@@ -50,10 +50,11 @@ const PaxSection = ({ title, type }) => {
     let selected = {[type]: prices[type].find(item => item[0] === Number(target.value))}
     actions.handlePaxClick(selected);
   }
+  console.log("HERE", userInput)
   return (
     <Section>
       <Title>{title}</Title>
-      <select value={userInput[type[0]]} onChange={onSelectChange}>
+      <select value={userInput[type][0]} onChange={onSelectChange}>
         {prices[type].map((item) => {
           let pax = item[0]
           return <option key={pax} value={pax}>{pax}</option>
