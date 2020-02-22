@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "watch": "webpack -w"
+    "start": "./node_modules/.bin/webpack-dev-server",
+    "build": "webpack"
   },
   "author": "Tom Claudio",
   "license": "ISC",
@@ -31,6 +30,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.10.3"
   }
 }
