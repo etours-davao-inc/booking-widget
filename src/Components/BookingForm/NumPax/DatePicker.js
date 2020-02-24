@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import Select from './SelectStyles';
 import { format } from 'date-fns'
 
-const DatePicker = ({minDate}) => {
+const DatePicker = ({startDate, minDate, emitChange, valid}) => {
   const initialDate = {
     month: minDate.getMonth(),
     day: minDate.getDate(),
     year: minDate.getFullYear(),
+  }
+
+  const startingDate = {
+    month: startDate.getMonth(),
+    day: startDate.getDate(),
+    year: startDate.getFullYear(),
   }
 
   const [date, setDate] = useState(initialDate);
@@ -20,27 +26,35 @@ const DatePicker = ({minDate}) => {
         if (newDate.day > monthDays) newDate.day = monthDays;
         setDaysOfMonth(monthDays);
       }
+      emitChange(new Date(newDate.year, newDate.month, newDate.day));
       return newDate;
     })
   }
 
   return (
     <div style={styles.datepicker}>
-      <Select name="month" value={date.month} onChange={onChange}>
-        {months.map((month, key) => <option disabled={key < initialDate.month && initialDate.year === date.year} value={key} key={key}>{month}</option> )}
+      <Select name="month" value={date.month} valid={valid} onChange={onChange}>
+        {months.map((month, key) => {
+          let disable = key < startingDate.month && startingDate.year === date.year
+          return <option value={key} key={key} disabled={disable}>{month}</option> 
+        })}
       </Select>
-      <Select name="day" value={date.day} onChange={onChange}>
-        {[...Array(daysOfMonth).keys()].map(d => <option value={d+1} key={d+1} disabled={d+1 < initialDate.day && initialDate.year === date.year}>{d+1}</option>)}
+      <Select name="day" value={date.day} valid={valid} onChange={onChange}>
+        {[...Array(daysOfMonth).keys()].map(day => {
+          let value = day + 1;
+          let disable = value < startingDate.day && startingDate.year === date.year && startingDate.month === date.month
+          return <option value={value} key={value} disabled={disable}>{value}</option>
+        })}
       </Select>
-      <Select name="year" value={date.year} onChange={onChange}>
+      <Select name="year" value={date.year} valid={valid} onChange={onChange}>
         {years.map(year => <option value={year} key={year}>{year}</option>)}
       </Select>
-      <p>{format(new Date(date.year, date.month, date.day), 'MM/dd/yyyy')}</p>
+      {/* <p>{format(new Date(date.year, date.month, date.day), 'MM/dd/yyyy')}</p> */}
     </div>
   )
 }
 
-DatePicker.defaultProps = { minDate: new Date() }
+DatePicker.defaultProps = { minDate: new Date(), emitChange: () => console.log(new Date()), valid:true  }
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ]
 const years = [2020, 2021]
