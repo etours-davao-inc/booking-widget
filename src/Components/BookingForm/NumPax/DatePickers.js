@@ -9,10 +9,8 @@ export default ({data, plusMaxDays}) => {
   const maxDays = limitdays ? duration: duration + plusMaxDays;
   const from = addDays(new Date(), startday);
   const to = addDays(from, duration-1);
-  const inititalState = {
-    from,
-    to,
-  }
+  const inititalState = {from,to}
+  
   const [state, setState] = useState(inititalState)
   const [valid, setValid] = useState(true)
   const [error, setError] = useState('')
@@ -26,7 +24,7 @@ export default ({data, plusMaxDays}) => {
         setError('')
         let nights = days - 1
         let hotelNights = nights - offsetnights
-        return {...newState, days, nights, hotelNights}
+        return {...newState, days, nights, hotelNights, offsetnights}
       } else {
         setValid(false)
         setError(`Require minimum of ${duration} days and maximum of ${days} days`)
