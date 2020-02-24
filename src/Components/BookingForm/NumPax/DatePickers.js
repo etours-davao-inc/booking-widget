@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
-import Select from './SelectStyles';
+import React, { useState, useContext } from 'react';
 import DatePicker from './DatePicker'
+import { BookingContext } from '../Context';
 
 export default (props) => {
+  // const inititalState = {
+  //   to: '',
+  //   from: '',
+  //   maxDays:,
+  //   minDays:,
+  //   nights:,
+  //   hotelNights:,
+  // }
+  const ctx = useContext(BookingContext);
+  const [dates, setDates] = useState({arrivalDate:'', departureDate:''})
   return (
     <>
       <div style={styles.dates}>
@@ -20,6 +30,5 @@ export default (props) => {
 const styles = {
   dates: {
     marginBottom: '15px'
-
-  },
+  }
 }
