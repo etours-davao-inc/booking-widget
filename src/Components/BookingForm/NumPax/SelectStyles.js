@@ -14,6 +14,9 @@ const Select = styled.select`
   box-sizing: border-box;
   margin: 0;
   border: 1px solid #aaa;
+  ${({ valid }) => !valid && `
+    border-color: red;
+  `}
   box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
   border-radius: .5em;
   -moz-appearance: none;
@@ -26,5 +29,6 @@ const Select = styled.select`
   background-position: right .7em top 50%, 0 0;
   background-size: .65em auto, 100%;
 `
+Select.defaultProps = {valid: true}
 
 export default Select;
