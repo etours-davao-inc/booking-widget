@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { addDays, differenceInCalendarDays, subDays, format } from 'date-fns';
+import { addDays, differenceInCalendarDays } from 'date-fns';
 import DatePicker from './DatePicker'
 import { BookingContext } from '../Context';
-import { resetDayRange } from 'tour-dates-utility';
-
 
 export default ({data, plusMaxDays}) => {
   const ctx = useContext(BookingContext);
