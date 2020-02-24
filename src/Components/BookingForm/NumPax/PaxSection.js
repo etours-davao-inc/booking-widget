@@ -6,9 +6,9 @@ import { BookingContext } from '../Context';
 const PaxSection = ({ title, type }) => {
   const { prices, userInput, actions } = useContext(BookingContext);
   const onSelectChange = ({ target }) => {
-    let selected = { [type]: prices[type].find(item => item[0] === Number(target.value)) }
-    actions.handlePaxClick(selected);
+    actions.onPaxSelect({ [type]: prices[type].find(item => item[0] === Number(target.value)) });
   }
+
   return (
     <Section>
       <Title>{title}</Title>
