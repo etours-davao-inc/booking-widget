@@ -30,7 +30,7 @@ const DatePicker = ({minDate}) => {
         {months.map((month, key) => <option disabled={key < initialDate.month && initialDate.year === date.year} value={key} key={key}>{month}</option> )}
       </Select>
       <Select name="day" value={date.day} onChange={onChange}>
-        {[...Array(daysOfMonth).keys()].map(d => <option value={d+1} key={d+1} disabled={d < initialDate.day && initialDate.year === date.year}>{d+1}</option>)}
+        {[...Array(daysOfMonth).keys()].map(d => <option value={d+1} key={d+1} disabled={d+1 < initialDate.day && initialDate.year === date.year}>{d+1}</option>)}
       </Select>
       <Select name="year" value={date.year} onChange={onChange}>
         {years.map(year => <option value={year} key={year}>{year}</option>)}
