@@ -6,9 +6,12 @@ import SelectHotel from './SelectHotel';
 import Computation from './Computation';
 import ReservationForm from './ReservationForm';
 import Hotel from './Hotel';
+import DatePicker from './DatePicker';
 
 export default () => {
   const { data, userInput } = useContext(BookingContext);
+  const multiday = data.type === "multiday";
+  const daytour = data.type !== "multiday";
   return (
     <>
       <div style={styles.wrapper}>
@@ -22,16 +25,30 @@ export default () => {
               <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
               <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
             </div>
-            <div style={{ marginTop: '24px' }}>
-              <SelectHotel hotels={data.hotels} />
-            </div>
+            {multiday &&
+              <div style={{ marginTop: '24px' }}>
+                <SelectHotel hotels={data.hotels} />
+              </div>
+            }
           </section>
+
           <section>
-            <p className="m-0 py-3 font-weight-bold">Select tour dates</p>
-            <DatePickers data={data} plusMaxDays={2} />
+            {multiday &&
+              <>
+                <p className="m-0 py-3 font-weight-bold">Select tour dates</p>
+                <DatePickers data={data} plusMaxDays={2} />
+              </>
+            }
+            {daytour &&
+              <>
+                <p className="m-0 py-3 font-weight-bold">Select tour date</p>
+                <p style={{fontSize: '15px', margin: '0 auto'}}>Tour date</p>
+                <DatePicker />
+              </>
+            }
           </section>
         </div>
-        {userInput.hotel.code && <Hotel {...userInput} />}
+        {multiday && userInput.hotel.code && <Hotel {...userInput} />}
       </div>
       <div style={styles.wrapper}>
         <Computation />
