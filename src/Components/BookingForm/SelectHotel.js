@@ -9,7 +9,7 @@ const SelectHotel = ({ hotels }) => {
       <p className="p-0 m-0">Select Accommodation</p>
       <Select style={styles.select} onChange={(e) => actions.onSelectHotel(e.target.value)}>
         <option value={""} key={0}>Tour Only</option>
-        {hotels.map(({code, name, price}) => <option key={code} value={code}>{`${name.toLowerCase()} at Php ${price}`}</option>)}
+        {hotels.map(({code, name, price}) => <option key={code} value={code}>{name.toLowerCase()}</option>)}
       </Select>
     </div>
   )
@@ -18,7 +18,7 @@ const SelectHotel = ({ hotels }) => {
 const styles = {
   select: {
     width: '100%',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
   }
 }
 

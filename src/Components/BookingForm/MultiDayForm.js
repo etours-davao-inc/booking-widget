@@ -5,33 +5,52 @@ import { BookingContext } from './Context';
 import SelectHotel from './SelectHotel';
 import Computation from './Computation';
 import ReservationForm from './ReservationForm';
+import Hotel from './Hotel';
 
 export default () => {
-  const { data } = useContext(BookingContext);
+  const { data, userInput } = useContext(BookingContext);
   return (
-    <>
-      <p className="m-0 py-3 font-weight-bold">Select number of persons</p>
-      <div style={styles.section}>
-        <PaxSection title="Adult" type="adults"></PaxSection>
-        <PaxSection title="Child (0-2 yrs)" type="kid02"></PaxSection>
-        <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
-        <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
+    <div style={styles.wrapper}>
+      <div style={styles.twoColumns}>
+        <section>
+          <p className="m-0 py-3 font-weight-bold">Select number of persons</p>
+          <div style={styles.pax}>
+            <PaxSection title="Adult" type="adults"></PaxSection>
+            <PaxSection title="Child (0-2 yrs)" type="kid02"></PaxSection>
+            <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
+            <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
+          </div>
+          <div style={{marginTop: '15px'}}>
+            <SelectHotel hotels={data.hotels} />
+          </div>
+        </section>
+        <section>
+          <p className="m-0 py-3 font-weight-bold">Select tour dates</p>
+          <DatePickers data={data} plusMaxDays={2} />
+        </section>
       </div>
-      <p className="m-0 py-3 font-weight-bold">Select tour date</p>
-      <DatePickers data={data} plusMaxDays={2} />
-      <SelectHotel hotels={data.hotels} />
 
-      <div style={{ height: '25px', borderBottom: '3px dotted silver' }}></div>
+      {userInput.hotel.code && <Hotel {...userInput} />}
       <Computation />
-
-      <div style={{ height: '25px', borderBottom: '3px dotted silver' }}></div>
+      <h3 className="m-0 py-3 font-weight-bold">ReservationForm</h3>
       <ReservationForm />
-    </>
+    </div>
   )
 };
 
 const styles = {
-  section: {
+  wrapper: {
+    padding: '10px',
+    marginTop: '15px',
+    backgroundColor: 'white',
+    borderRadius: '4px',
+  },
+  twoColumns: {
+    display: 'grid',
+    gridTemplateColumns: '350px 350px',
+    gridGap: '30px',
+  },
+  pax: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gridGap: '15px'

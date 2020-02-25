@@ -33,9 +33,9 @@ export default ({data, plusMaxDays}) => {
   }
 
   return (
-    <>
+    <div>
       <div style={styles.dates}>
-        <p className="p-0 m-0">Arrival date</p>
+        <p style={{fontSize: '15px', margin: '0 auto'}}>Arrival date</p>
         <DatePicker 
           startDate={userInput.startDate}
           key={state.from} 
@@ -45,7 +45,7 @@ export default ({data, plusMaxDays}) => {
         />
       </div>
       <div style={styles.dates}>
-        <p className="p-0 m-0">Departure date</p>
+        <p style={{fontSize: '15px', margin: '0 auto'}}>Departure date</p>
         <DatePicker 
           startDate={userInput.startDate}
           key={state.to} 
@@ -55,13 +55,14 @@ export default ({data, plusMaxDays}) => {
         />
       </div>
       <p style={styles.error}>{error}</p>
-    </>
+    </div>
   )
 }
 
 const styles = {
+
   dates: {
-    marginBottom: '15px'
+    margin: '0 0 15px 0'
   },
   error: {
     color: 'red',

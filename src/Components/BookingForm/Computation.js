@@ -7,16 +7,12 @@ export default () => {
   const { data, userInput, calculations } = useContext(BookingContext);
   return (
     <ComputationWrapper>
-      <p className="m-0 py-3 font-weight-bold">View summary</p>
-      <dl className="row small">
-        <dt className="col-sm-3">Name:</dt>
-        <dd className="col-sm-9">{data.name}</dd>
-        <dt className="col-sm-3">Duration:</dt>
-        <dd className="col-sm-9">{data.hotels ? `${userInput.tourDates.days} days and ${userInput.tourDates.nights} nights` : data.duration_text}</dd>
-      </dl>
+      <h3 className="m-0 py-3 font-weight-bold">Summary</h3>
+      <p style={{ marginBottom: '3px' }}>Name: <strong>{data.name}</strong></p>
+      <p>Duration: <strong>{data.hotels ? `${userInput.tourDates.days} days and ${userInput.tourDates.nights} nights` : data.duration_text}</strong></p>
       <div id="summary_wrapper">
         <div className="computationGrid">
-          <p></p><p>Price</p><p>Qty</p><p></p>
+          <p></p><p>Price</p><p>Qty</p><p>Total</p>
         </div>
         <div className="computationGrid">
           <p>Adults</p>
@@ -24,24 +20,30 @@ export default () => {
           <p>{userInput.adults[0]}</p>
           <p><Currency quantity={calculations.total.adults} currency="PHP" pattern="!##,### " /></p>
         </div>
-        <div className="computationGrid">
-          <p>Kids (0-2 yrs)</p>
-          <p><Currency quantity={calculations.item.kid02} currency="PHP" pattern="!##,### " /></p>
-          <p>{userInput.kid02[0]}</p>
-          <p><Currency quantity={calculations.total.kid02} currency="PHP" pattern="!##,### " /></p>
-        </div>
-        <div className="computationGrid">
-          <p>Kids (3-5 yrs)</p>
-          <p><Currency quantity={calculations.item.kid35} currency="PHP" pattern="!##,### " /></p>
-          <p>{userInput.kid35[0]}</p>
-          <p><Currency quantity={calculations.total.kid35} currency="PHP" pattern="!##,### " /></p>
-        </div>
-        <div className="computationGrid">
-          <p>Kids (6-11 yrs)</p>
-          <p><Currency quantity={calculations.item.kid611} currency="PHP" pattern="!##,### " /></p>
-          <p>{userInput.kid611[0]}</p>
-          <p><Currency quantity={calculations.total.kid611} currency="PHP" pattern="!##,### " /></p>
-        </div>
+        {userInput.kid611[0] != '0' &&
+          <div className="computationGrid">
+            <p>Kids (6-11 yrs)</p>
+            <p><Currency quantity={calculations.item.kid611} currency="PHP" pattern="!##,### " /></p>
+            <p>{userInput.kid611[0]}</p>
+            <p><Currency quantity={calculations.total.kid611} currency="PHP" pattern="!##,### " /></p>
+          </div>
+        }
+        {userInput.kid35[0] != '0' &&
+          <div className="computationGrid">
+            <p>Kids (3-5 yrs)</p>
+            <p><Currency quantity={calculations.item.kid35} currency="PHP" pattern="!##,### " /></p>
+            <p>{userInput.kid35[0]}</p>
+            <p><Currency quantity={calculations.total.kid35} currency="PHP" pattern="!##,### " /></p>
+          </div>
+        }
+        {userInput.kid02[0] != '0' &&
+          <div className="computationGrid">
+            <p>Kids (0-2 yrs)</p>
+            <p><Currency quantity={calculations.item.kid02} currency="PHP" pattern="!##,### " /></p>
+            <p>{userInput.kid02[0]}</p>
+            <p><Currency quantity={calculations.total.kid02} currency="PHP" pattern="!##,### " /></p>
+          </div>
+        }
         <div className="computationGrid">
           <p className="computationTotalBalance">Total</p>
           <p><Currency quantity={calculations.total.total} currency="PHP" pattern="!##,### " /></p>
@@ -60,16 +62,17 @@ export default () => {
 }
 
 const ComputationWrapper = styled.section`
+  font-size: 18px;
   .computationGrid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     grid-gap: 5px 5px;
     border-bottom: 1px dotted silver;
-    font-size: .85em;
+    font-size: 1em;
   }
 
   .computationGrid p {
-    padding: 2px;
+    padding: 4px;
     margin: 0;
   }
 

@@ -28,7 +28,7 @@ const Title = styled.p`
 `
 
 const Section = styled.section`
-  padding: 5px 0;
+
 `
 
 export default PaxSection;
