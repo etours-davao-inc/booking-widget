@@ -1,18 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { addDays, differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays } from 'date-fns';
 import DatePicker from './DatePicker'
 import { BookingContext } from '../Context';
 
 export default ({data, plusMaxDays}) => {
-  const { actions } = useContext(BookingContext);
-  const today = new Date();
-  const {duration, limitdays, startday, offsetnights} = data;
+  const { actions, userInput } = useContext(BookingContext);
+  const { duration, limitdays, offsetnights } = data;
   const maxDays = limitdays ? duration: duration + plusMaxDays;
-  const from = addDays(today, startday);
-  const to = addDays(from, duration-1);
-  const inititalState = {from,to}
 
-  const [state, setState] = useState(inititalState)
+  const [state, setState] = useState(userInput.tourDates)
   const [valid, setValid] = useState(true)
   const [error, setError] = useState('')
 
@@ -41,7 +37,7 @@ export default ({data, plusMaxDays}) => {
       <div style={styles.dates}>
         <p className="p-0 m-0">Arrival date</p>
         <DatePicker 
-          startDate={from} 
+          startDate={userInput.startDate}
           key={state.from} 
           minDate={state.from}
           valid={valid} 
@@ -51,7 +47,7 @@ export default ({data, plusMaxDays}) => {
       <div style={styles.dates}>
         <p className="p-0 m-0">Departure date</p>
         <DatePicker 
-          startDate={from} 
+          startDate={userInput.startDate}
           key={state.to} 
           minDate={state.to}
           valid={valid}
