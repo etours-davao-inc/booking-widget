@@ -41,9 +41,10 @@ export const Provider = ({data, children}) => {
     InitialUserInput.hotel = {code:"", price:0, name:"", photo:""};
     InitialUserInput.startDate = tourDates.from
   } else {
-    setOptionPaymentDate(today, tourDate).then(date => {
+    InitialUserInput.tourDate = addDays(today, startday);
+    setOptionPaymentDate(today, InitialUserInput.tourDate).then(date => {
       InitialUserInput.optionDate = date
-      InitialUserInput.tourDate = addDays(today, startday);
+      
     }) 
   } 
 
@@ -125,7 +126,7 @@ export const Provider = ({data, children}) => {
   }
 
   const doComputations = (payload) => {
-    if(payload.hotel && payload.tourDates) setCalculations(Calculate(payload))
+    setCalculations(Calculate(payload))
   }
 
   const resetBookingForm = () => {
