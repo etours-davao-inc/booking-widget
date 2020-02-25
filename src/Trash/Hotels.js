@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Consumer } from './Context';
+import { Consumer } from '../Components/BookingForm/Context';
 
 import numeral from 'numeral';
 
-import { ButtonGroup, Button } from '../Buttons';
+import { ButtonGroup, Button } from '../Components/BookingForm/Buttons';
 import ScrolledYWrapper from './ScrolledYWrapper';
 
 

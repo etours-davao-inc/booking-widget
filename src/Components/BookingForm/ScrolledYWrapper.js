@@ -1,7 +1,0 @@
-import styled from 'styled-components';
-
-export default styled.div`
-  padding: 10px;
-  height: 480px;
-  overflow-y: auto;
-`

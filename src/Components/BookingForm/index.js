@@ -1,59 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PaxSection from './PaxSection';
+import DatePickers from './DatePickers';
+import { BookingContext } from './Context';
+import SelectHotel from './SelectHotel';
+import Computation from './Computation';
+import ReservationForm from './ReservationForm';
 
-import styled from 'styled-components';
-
-import Responsive from 'react-responsive';
-import { Provider } from './Context';
-import BookingFormMobileDrawer from './BookingFormMobileDrawer';
-import CurrentBookingModule from './CurrentBookingModule';
-import ErrorBoundary from '../ErrorBoundary';
-
-const Mobile = props => <Responsive {...props} maxWidth={991} />
-const Desktop = props => <Responsive {...props} minWidth={992} />
-const MobileLandscape = props => <Responsive {...props} maxHeight={568} maxWidth={768} orientation={'landscape'} />
-
-const BookingFormWrapper = styled.span`
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  background-color: white;
-  height: 540px;
-  padding: 5px;
-`
-
-const BookingFormLandScapeWrapper = styled.span`
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  background-color: white;
-  height: 240px;
-  padding: 5px;
-`
-
-export default (props) => {
+export default () => {
+  const { actions, data, calculations, userInput } = useContext(BookingContext);
   return (
-    <ErrorBoundary>
-      <Provider data={props.data}>
-        <Desktop>
-          <BookingFormWrapper>
-            <CurrentBookingModule />
-          </BookingFormWrapper>
-        </Desktop>
-        <Mobile>
-          <BookingFormMobileDrawer>
-            <BookingFormWrapper>
-              <CurrentBookingModule />
-            </BookingFormWrapper>
-          </BookingFormMobileDrawer>
-        </Mobile>
-        <MobileLandscape>
-          <BookingFormMobileDrawer>
-            <BookingFormLandScapeWrapper>
-              <CurrentBookingModule />
-            </BookingFormLandScapeWrapper>
-          </BookingFormMobileDrawer>
-        </MobileLandscape>
-      </Provider>
-    </ErrorBoundary>
-  );
+    <>
+      <p className="m-0 py-3 font-weight-bold">Select number of persons</p>
+      <div style={styles.section}>
+        <PaxSection title="Adult" type="adults"></PaxSection>
+        <PaxSection title="Child (0-2 yrs)" type="kid02"></PaxSection>
+        <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
+        <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
+      </div>
+      <p className="m-0 py-3 font-weight-bold">Select tour date</p>
+      <DatePickers data={data} plusMaxDays={2} /> 
+      <SelectHotel hotels={data.hotels} />
+
+      <div style={{height:'25px', borderBottom: '3px dotted silver'}}></div>
+      <Computation />
+
+      <div style={{height:'25px', borderBottom: '3px dotted silver'}}></div>
+      <ReservationForm />
+    </>
+  )
+};
+
+const styles = {
+  section: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gridGap: '15px'
+  }
 }
+

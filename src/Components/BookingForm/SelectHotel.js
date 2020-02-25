@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Select from './SelectStyles';
-import { BookingContext } from '../Context';
+import { BookingContext } from './Context';
 
 const SelectHotel = ({ hotels }) => {
   const { actions } = useContext(BookingContext)

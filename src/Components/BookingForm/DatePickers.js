@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { differenceInCalendarDays } from 'date-fns';
 import DatePicker from './DatePicker'
-import { BookingContext } from '../Context';
+import { BookingContext } from './Context';
 
 export default ({data, plusMaxDays}) => {
   const { actions, userInput } = useContext(BookingContext);

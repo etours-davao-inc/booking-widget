@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Select from './SelectStyles';
-import { BookingContext } from '../Context';
+import { BookingContext } from './Context';
 
 const PaxSection = ({ title, type }) => {
   const { prices, userInput, actions } = useContext(BookingContext);
