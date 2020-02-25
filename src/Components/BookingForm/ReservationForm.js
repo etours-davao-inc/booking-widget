@@ -9,7 +9,6 @@ export default () => {
   return (
     <>
       <ReservationFormWrapper>
-        <p className="m-0 py-3 font-weight-bold">Fill out contact details</p>
         <input type="text" name="name" placeholder="Name" value={userInput.name} required="required" onChange={e => actions.handleRFChange(e)} />
         <input type="email" name="email" placeholder="Email" value={userInput.email} required="required" onChange={e => actions.handleRFChange(e)} />
         <input type="text" name="contact" placeholder="Contact Number" value={userInput.contact} onChange={e => actions.handleRFChange(e)} />
@@ -27,22 +26,21 @@ export default () => {
 }
 
 const ReservationFormWrapper = styled.form`
+  font-size: 20px;
   input {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     width: 100%;
     height: 36px;
-    border-radius: 3px;
+    border-radius: 2px;
     border: 1px solid rgba(149, 165, 166,1.0);
-    padding: 0 10px;
-    color: 1px solid rgba(149, 165, 166,1.0);
+    padding: 0 12px;
   }
 
   textarea {
     margin-bottom: 10px;
     width: 100%;
-    border-radius: 3px;
+    border-radius: 2px;
     border: 1px solid rgba(149, 165, 166,1.0);
-    font-size: .90em;
     padding: 10px;   
   }
 
