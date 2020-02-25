@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import PaxSection from './PaxSection';
-import { ButtonGroup, Button } from '../../Buttons';
+import DatePickers from './DatePickers';
 import { BookingContext } from '../Context';
+import SelectHotel from './SelectHotel';
+import Computation from '../Computation';
+import ReservationForm from '../ReservationForm';
 
 export default () => {
-  const { actions } = useContext(BookingContext);
+  const { actions, data, calculations, userInput } = useContext(BookingContext);
   return (
     <>
       <p className="m-0 py-3 font-weight-bold">Select number of persons</p>
@@ -14,9 +17,15 @@ export default () => {
         <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
         <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
       </div>
-      <ButtonGroup>
-        <Button next onClick={() => actions.step('+')}>Select tour date</Button>
-      </ButtonGroup>
+      <p className="m-0 py-3 font-weight-bold">Select tour date</p>
+      <DatePickers data={data} plusMaxDays={2} /> 
+      <SelectHotel hotels={data.hotels} />
+
+      <div style={{height:'25px', borderBottom: '3px dotted silver'}}></div>
+      <Computation />
+
+      <div style={{height:'25px', borderBottom: '3px dotted silver'}}></div>
+      <ReservationForm />
     </>
   )
 };
@@ -26,7 +35,6 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gridGap: '15px'
-
   }
 }
 
