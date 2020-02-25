@@ -54,7 +54,12 @@ const DatePicker = ({startDate, minDate, emitChange, valid}) => {
   )
 }
 
-DatePicker.defaultProps = { minDate: new Date(), emitChange: () => console.log(new Date()), valid:true  }
+DatePicker.defaultProps = { 
+  minDate: new Date(),
+  startDate: new Date(2019, 11, 31),
+  valid:true,
+  emitChange: () => console.log(new Date()) 
+}
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ]
 const years = [2020, 2021]
