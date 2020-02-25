@@ -1,20 +1,11 @@
 import React, { useContext } from 'react';
 import Currency from 'react-currency-formatter';
-
 import styled from 'styled-components';
-
-import { ButtonGroup, Button } from '../Buttons';
-import ScrolledYWrapper from './ScrolledYWrapper';
-
 import { BookingContext } from './Context';
-
-
 
 export default () => {
   const { data, userInput, calculations } = useContext(BookingContext);
   return (
-
-
     <ComputationWrapper>
       <p className="m-0 py-3 font-weight-bold">View summary</p>
       <dl className="row small">
