@@ -38,7 +38,7 @@ export const Provider = ({data, children}) => {
     tourDates.nights = tourDates.days - 1;
     tourDates.hotelNights = tourDates.nights - offsetnights;
     InitialUserInput.tourDates = tourDates;
-    InitialUserInput.hotel = {code:"", price:0, name:""};
+    InitialUserInput.hotel = {code:"", price:0, name:"", photo:""};
     InitialUserInput.startDate = tourDates.from
   } else {
     setOptionPaymentDate(today, tourDate).then(date => {
