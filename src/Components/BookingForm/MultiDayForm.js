@@ -12,7 +12,7 @@ export default () => {
   return (
     <>
       <div style={styles.wrapper}>
-        <h3 className="m-0 py-3 font-weight-bold">ReservationForm</h3>
+        <h3 className="m-0 py-3 font-weight-bold">Travel information</h3>
         <div style={styles.twoColumns}>
           <section>
             <p className="m-0 py-3 font-weight-bold">Select number of persons</p>
