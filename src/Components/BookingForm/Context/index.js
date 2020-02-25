@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { addDays, differenceInCalendarDays } from 'date-fns';
 
 import isEmail from 'validator/lib/isEmail';
@@ -6,7 +6,7 @@ import isEmail from 'validator/lib/isEmail';
 import { Calculate } from 'price-compute-js';
 import postReservation  from './postReservation';
 
-import { setDayRange, setOptionPaymentDate } from 'tour-dates-utility';
+import { setOptionPaymentDate } from 'tour-dates-utility';
 
 export const BookingContext = React.createContext();
 
