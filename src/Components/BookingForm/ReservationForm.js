@@ -26,11 +26,12 @@ export default () => {
 }
 
 const ReservationFormWrapper = styled.form`
-  font-size: 20px;
+  padding: 10px;
+  font-size: 16px;
   input {
     margin-bottom: 12px;
     width: 100%;
-    height: 36px;
+    height: 46px;
     border-radius: 2px;
     border: 1px solid rgba(149, 165, 166,1.0);
     padding: 0 12px;
