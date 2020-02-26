@@ -11,7 +11,8 @@ export default () => {
     <ComputationWrapper>
       <h3 className="m-0 py-3 font-weight-bold">Summary</h3>
       <p style={{ marginBottom: '3px' }}>Name: <strong>{data.name}</strong></p>
-      <p>Duration: <strong>{data.hotels ? `${userInput.tourDates.days} days and ${userInput.tourDates.nights} nights` : data.duration_text}</strong></p>
+      <p>Duration: <strong>{data.hotels ? `${userInput.tourDates.days} days and ${userInput.tourDates.nights} 
+      nights` : data.duration_text}</strong></p>
       <div id="summary_wrapper">
         <div className="computationGrid">
           <p></p><p>Price</p><p>Qty</p><p>Total</p>
@@ -46,17 +47,21 @@ export default () => {
             <p><Currency quantity={calculations.total.kid02} currency="PHP" pattern="!##,### " /></p>
           </div>
         }
-        <div className="computationGrid">
+        <div className="twoGrid">
           <p className="computationTotalBalance">Total</p>
           <p><Currency quantity={calculations.total.total} currency="PHP" pattern="!##,### " /></p>
         </div>
-        <div className="computationGrid">
-          <p className="computationTotalBalance">Required downpayment on or before <strong>{optionDate}</strong> to confirm your reservation</p>
+        <div className="twoGrid">
+          <p className="computationTotalBalance">Required downpayment to confirm your reservation</p>
           <p><Currency quantity={calculations.total.downpayment} currency="PHP" pattern="!##,### " /></p>
         </div>
-        <div className="computationGrid">
+        <div className="twoGrid">
           <p className="computationTotalBalance">Balance to be paid on the first day of your tour</p>
           <p><Currency quantity={calculations.total.balance} currency="PHP" pattern="!##,### " /></p>
+        </div>
+        <div className="twoGrid">
+          <p>Option date for downpayment</p>
+          <p style={{textAlign: 'right'}}><strong>{optionDate}</strong></p>
         </div>
       </div>
     </ComputationWrapper>
@@ -64,16 +69,15 @@ export default () => {
 }
 
 const ComputationWrapper = styled.section`
-  font-size: 18px;
+  font-size: 16px;
   .computationGrid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     grid-gap: 5px 5px;
     border-bottom: 1px dotted silver;
-    font-size: 1em;
   }
 
-  .computationGrid:last-child {
+  .twoGrid:last-child {
     border-bottom: none;
   }
 
@@ -92,8 +96,19 @@ const ComputationWrapper = styled.section`
     text-align: right;
   }
 
-  .computationTotalBalance {
-    grid-column-start: 1;
-    grid-column-end: 4;
-  }    
+  .twoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;	
+    border-bottom: 1px dotted silver;
+  }
+
+  .twoGrid p {
+    padding: 4px;
+    margin: 0;
+  }
+
+  .twoGrid p:last-child {
+    text-align: right;
+  }
 `

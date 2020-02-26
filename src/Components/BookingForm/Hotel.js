@@ -33,10 +33,10 @@ const HotelWrapper = styled.div`
   border: 1px solid green;
 `
 const HotelName = styled.p`
-  font-size: 1.2em;
-  line-height: 1rem;
-  padding-top: 4px;
+  font-size: 1.1em;
+  line-height: 1.1em;
   margin-bottom:0px;
+  padding: 0 0 4px 0;
   text-transform: 'capitalize';
 `
 const PriceLabel = styled.span`
