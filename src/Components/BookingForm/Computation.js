@@ -51,7 +51,7 @@ export default () => {
           <p><Currency quantity={calculations.total.total} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="computationGrid">
-          <p className="computationTotalBalance">Required downpayment on or before <strong>{optionDate}</strong> to confirm your reservation on</p>
+          <p className="computationTotalBalance">Required downpayment on or before <strong>{optionDate}</strong> to confirm your reservation</p>
           <p><Currency quantity={calculations.total.downpayment} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="computationGrid">
@@ -73,9 +73,14 @@ const ComputationWrapper = styled.section`
     font-size: 1em;
   }
 
+  .computationGrid:last-child {
+    border-bottom: none;
+  }
+
   .computationGrid p {
     padding: 4px;
     margin: 0;
+
   }
 
   .computationGrid p:nth-child(3) {
