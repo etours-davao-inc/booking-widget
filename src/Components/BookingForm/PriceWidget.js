@@ -25,13 +25,7 @@ export default () => {
               <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
               <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
             </div>
-            {multiday &&
-              <div style={{ marginTop: '24px' }}>
-                <SelectHotel hotels={data.hotels} />
-              </div>
-            }
           </section>
-
           <section>
             {multiday &&
               <>
@@ -42,9 +36,16 @@ export default () => {
             {daytour &&
               <>
                 <p className="m-0 py-3 font-weight-bold">Select tour date</p>
-                <p style={{fontSize: '15px', margin: '0 auto'}}>Tour date</p>
+                <p style={{ fontSize: '15px', margin: '0 auto' }}>Tour date</p>
                 <DatePicker />
               </>
+            }
+          </section>
+          <section>
+            {multiday &&
+              <div>
+                <SelectHotel hotels={data.hotels} />
+              </div>
             }
           </section>
         </div>
@@ -70,8 +71,8 @@ const styles = {
   },
   twoColumns: {
     display: 'grid',
-    gridTemplateColumns: '350px 350px',
-    gridGap: '55px',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(min(350px, 100%), 1fr))',
+    gridGap: '15px 55px',
   },
   pax: {
     display: 'grid',
