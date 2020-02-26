@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import Currency from 'react-currency-formatter';
 import styled from 'styled-components';
 import { BookingContext } from './Context';
+import { format } from 'date-fns'
 
 export default () => {
   const { data, userInput, calculations } = useContext(BookingContext);
+  let optionDate = userInput.optionDate ? format(userInput.optionDate, 'MMMM d, yyyy') : format(new Date(), 'MMMM d, yyyy')
   return (
     <ComputationWrapper>
       <h3 className="m-0 py-3 font-weight-bold">Summary</h3>
@@ -49,7 +51,7 @@ export default () => {
           <p><Currency quantity={calculations.total.total} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="computationGrid">
-          <p className="computationTotalBalance">Required downpayment to confirm your reservation</p>
+          <p className="computationTotalBalance">Required downpayment on or before <strong>{optionDate}</strong> to confirm your reservation on</p>
           <p><Currency quantity={calculations.total.downpayment} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="computationGrid">
