@@ -1,5 +1,5 @@
 import React from 'react';
-import MultiDayForm from './MultiDayForm';
+import PriceWidget from './PriceWidget';
 import { Provider } from './Context';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -7,7 +7,7 @@ export default ({data}) => {
   return (
     <ErrorBoundary>
       <Provider data={data}>
-        <MultiDayForm />
+        <PriceWidget />
       </Provider>
     </ErrorBoundary>
   )
