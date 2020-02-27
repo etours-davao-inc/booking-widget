@@ -30,7 +30,7 @@ export default () => {
             {daytour &&
               <>
                 <h4 style={styles.customh4}>Select tour date</h4>
-                <label for="tourdate" style={{ fontSize: '15px', margin: '0 auto' }}>Tour date</label>
+                <label htmlFor="tourdate" style={{ fontSize: '15px', margin: '0 auto' }}>Tour date</label>
                 <DatePicker id="tourdate" />
               </>
             }
