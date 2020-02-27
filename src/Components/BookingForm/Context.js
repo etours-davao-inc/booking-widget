@@ -4,7 +4,7 @@ import { addDays, differenceInCalendarDays } from 'date-fns';
 import isEmail from 'validator/lib/isEmail';
 
 import { Calculate } from 'price-compute-js';
-import postReservation from './postReservation';
+import PostReservation from './PostReservation';
 
 import { setOptionPaymentDate } from 'tour-dates-utility';
 
