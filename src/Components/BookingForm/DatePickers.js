@@ -10,7 +10,6 @@ export default ({data, plusMaxDays}) => {
 
   const [state, setState] = useState(userInput.tourDates)
   const [valid, setValid] = useState(true)
-  const [error, setError] = useState('')
 
   const handleChange = date => {
     setState(currentState => {
@@ -18,7 +17,6 @@ export default ({data, plusMaxDays}) => {
       let days = differenceInCalendarDays(newState.to, newState.from) + 1;
       if (days <= maxDays && days >= duration ) {
         setValid(true)
-        setError('')
         let nights = days - 1
         let hotelNights = nights - offsetnights
         newState =  {...newState, days, nights, hotelNights, offsetnights};
@@ -27,7 +25,6 @@ export default ({data, plusMaxDays}) => {
       } else {
         setValid(false);
         actions.setInvalidDates();
-        setError(`Require minimum of ${duration} days and maximum of ${days} days`)
         return newState
       }
     })
@@ -44,6 +41,7 @@ export default ({data, plusMaxDays}) => {
           minDate={state.from}
           valid={valid} 
           emitChange={(date) => handleChange({from: date})}
+          aria-describeby="dates-notes"
         />
       </div>
       <div style={styles.dates}>
@@ -54,10 +52,16 @@ export default ({data, plusMaxDays}) => {
           key={state.to} 
           minDate={state.to}
           valid={valid}
-          emitChange={(date) => handleChange({to:date})} 
+          emitChange={(date) => handleChange({to:date})}
+          aria-describeby="dates-notes"
         />
       </div>
-      <p style={styles.error}>{error}</p>
+      <p 
+        style={valid ? styles.dateNotes : {...styles.dateNotes, ...styles.error}} 
+        id="dates-notes"
+      >
+        Travel dates requires a minimum of {duration} days and maximum of {state.days} from arrival date to departure date
+      </p>
     </div>
   )
 }
@@ -69,8 +73,11 @@ const styles = {
   },
   error: {
     color: 'red',
-    fontSize: '12px',
-    padding: 0,
+  },
+  dateNotes: {
+    fontSize: '14px',
     margin: 0,
+    padding: 0,
+    lineHeight: '16px',
   }
 }
