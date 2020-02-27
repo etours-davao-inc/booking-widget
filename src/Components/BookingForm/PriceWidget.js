@@ -7,18 +7,19 @@ import Computation from './Computation';
 import ReservationForm from './ReservationForm';
 import Hotel from './Hotel';
 import DatePicker from './DatePicker';
+import Loader from './Loader';
 
 export default () => {
-  const { data, userInput } = useContext(BookingContext);
+  const { data, userInput, validDates } = useContext(BookingContext);
   const multiday = data.type === "multiday";
   const daytour = data.type !== "multiday";
   return (
     <>
-      <div style={styles.wrapper}>
-        <h3 className="m-0 py-3 font-weight-bold">Travel information</h3>
+      <form id="travel-information" style={styles.wrapper}>
+        <h3>Travel information</h3>
         <div style={styles.twoColumns}>
           <section>
-            <p className="m-0 py-3 font-weight-bold">Select number of persons</p>
+            <h4 style={styles.customh4}>Select number of persons</h4>
             <div style={styles.pax}>
               <PaxSection title="Adult" type="adults"></PaxSection>
               <PaxSection title="Child (0-2 yrs)" type="kid02"></PaxSection>
@@ -29,42 +30,37 @@ export default () => {
           <section>
             {multiday &&
               <>
-                <p className="m-0 py-3 font-weight-bold">Select tour dates</p>
+                <h4 style={styles.customh4}>Select tour dates</h4>
                 <DatePickers data={data} plusMaxDays={2} />
               </>
             }
             {daytour &&
               <>
-                <p className="m-0 py-3 font-weight-bold">Select tour date</p>
+                <h4 style={styles.customh4}>Select tour date</h4>
                 <p style={{ fontSize: '15px', margin: '0 auto' }}>Tour date</p>
                 <DatePicker />
               </>
             }
           </section>
           <section>
-            {multiday &&
-              <div>
-                <SelectHotel hotels={data.hotels} />
-              </div>
-            }
+            {multiday && <SelectHotel hotels={data.hotels} />}
           </section>
         </div>
         {multiday && userInput.hotel.code && <Hotel {...userInput} />}
-      </div>
-      <div style={styles.wrapper}>
-        <Computation />
-      </div>
-      <div style={styles.wrapper}>
-        <h3 className="m-0 py-3 font-weight-bold">Reservation Form</h3>
-        <ReservationForm />
-      </div>
+      </form>
+      {validDates && <WrappedComputation /> }
+      {validDates && <WrappedReservationForm /> }
     </>
   )
 };
 
+const WrappedComputation = () => <div style={styles.wrapper}><Computation /></div>
+const WrappedReservationForm = () => <div style={styles.wrapper}><ReservationForm /></div>
+
+
 const styles = {
   wrapper: {
-    padding: '16px',
+    padding: '18px',
     marginTop: '8px',
     backgroundColor: 'white',
     borderRadius: '2px',
@@ -78,6 +74,20 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gridGap: '15px'
+  },
+  customh4: {
+    fontSize: '17px',
+    padding: '8px 0',
+    margin: '15px 0',
+    color: 'black'
+  },
+  blur: {
+    WebkitFilter: 'blur(5px)',
+    MFilter: 'blur(5px)',
+    OFilter: 'blur(5px)',
+    msfilter: 'blur(5px)',
+    filter: 'blur(5px)',
+    backgroundColor: '#ccc',
   }
 }
 
