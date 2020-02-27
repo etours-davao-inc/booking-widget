@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default () => (
   <Loader>
-    <div class="lds-facebook">
+    <div className="lds-facebook">
       <div></div>
       <div></div>
       <div></div>
