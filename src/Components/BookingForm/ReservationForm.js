@@ -8,7 +8,7 @@ export default () => {
   return (
     <>
       <h3>Reservation Form</h3>
-      <ReservationFormWrapper onSubmit={() => actions.submitBooking()}>
+      <ReservationFormWrapper onSubmit={(e) => actions.submitBooking(e)}>
         <input type="text" name="name" placeholder="Name" value={userInput.name} required="required" onChange={e => actions.handleRFChange(e)} aria-label="name" />
         <input type="email" name="email" placeholder="Email" value={userInput.email} required="required" onChange={e => actions.handleRFChange(e)} aria-label="email address" />
         <input type="text" name="contact" placeholder="Contact Number" value={userInput.contact} onChange={e => actions.handleRFChange(e)} aria-label="contact number" />

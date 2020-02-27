@@ -49,7 +49,7 @@ export const Provider = ({ data, children }) => {
   }
 
   const [state, setState] = useState({ data: data, RFValid: false, termsAccepted: false, validDates: true })
-  const [tourPackage] = useState({ name, code, slug, type, duration, duration_text, info, responsibilities, terms })
+  const [tourpackage] = useState({ name, code, slug, type, duration, duration_text, info, responsibilities, terms })
   const [userInput, setUserInput] = useState(InitialUserInput)
 
   const [calculations, setCalculations] = useState(Calculate(userInput));
@@ -110,13 +110,18 @@ export const Provider = ({ data, children }) => {
     }
   }
 
-  const submitBooking = () => {
-    console.log(state, userInput)
-    // postReservation({
-    //   input: userInput,
-    //   calculations: calculations,
-    //   package: package
-    // })
+  const submitBooking = (e) => {
+    e.preventDefault();
+    if (state.RFValid) {
+      console.log(state, userInput, calculations, tourpackage)
+      // PostReservation({
+      //   input: userInput,
+      //   calculations: calculations,
+      //   package: tourpackage
+      // })   
+    } else {
+      alert("Error submitting your reservation")
+    }
   }
 
   const doComputations = (payload) => {
