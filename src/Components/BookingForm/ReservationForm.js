@@ -10,10 +10,10 @@ export default () => {
     <>
       <h3>Reservation Form</h3>
       <ReservationFormWrapper>
-        <input type="text" name="name" placeholder="Name" value={userInput.name} required="required" onChange={e => actions.handleRFChange(e)} />
-        <input type="email" name="email" placeholder="Email" value={userInput.email} required="required" onChange={e => actions.handleRFChange(e)} />
-        <input type="text" name="contact" placeholder="Contact Number" value={userInput.contact} onChange={e => actions.handleRFChange(e)} />
-        <textarea name="remarks" placeholder="Extra notes" value={userInput.remarks} rows={4} onChange={e => actions.handleRFChange(e)} />
+        <input type="text" name="name" placeholder="Name" value={userInput.name} required="required" onChange={e => actions.handleRFChange(e)} aria-label="name" />
+        <input type="email" name="email" placeholder="Email" value={userInput.email} required="required" onChange={e => actions.handleRFChange(e)} aria-label="email address" />
+        <input type="text" name="contact" placeholder="Contact Number" value={userInput.contact} onChange={e => actions.handleRFChange(e)} aria-label="contact number" />
+        <textarea name="remarks" placeholder="Extra notes" value={userInput.remarks} rows={4} onChange={e => actions.handleRFChange(e)} aria-label="other remarks" />
         <div id="terms_and_conditions">
           <input id="terms_checkbox" name="terms" type="checkbox" required="required" checked={termsAccepted} onChange={e => actions.handleRFChange(e)} />
           <label htmlFor="terms_checkbox">Yes, I have read and agree with the terms and conditions below.</label>
