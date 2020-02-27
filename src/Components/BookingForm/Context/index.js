@@ -48,7 +48,7 @@ export const Provider = ({ data, children }) => {
     })
   }
 
-  const [state, setState] = useState({ data: data, RFValid: false, termsAccepted: false })
+  const [state, setState] = useState({ data: data, RFValid: false, termsAccepted: false, validDates: true })
   const [tourPackage] = useState({ name, code, slug, type, duration, duration_text, info, responsibilities, terms })
   const [userInput, setUserInput] = useState(InitialUserInput)
 
@@ -69,10 +69,14 @@ export const Provider = ({ data, children }) => {
 
   const onSelectDates = (tourDates) => {
     setOptionPaymentDate(userInput.inquiryDate, tourDates.from).then(optionDate => {
+      setState({...state, validDates: true})
       setUserInput({ ...userInput, tourDates, optionDate })
       doComputations({ ...userInput, tourDates, optionDate })
     })
+  }
 
+  const setInvalidDates = () => {
+    setState({...state, validDates:false})
   }
 
   const onSelectHotel = (payload) => {
@@ -124,6 +128,7 @@ export const Provider = ({ data, children }) => {
       data: state.data,
       prices: state.data.price,
       RFValid: state.RFValid,
+      validDates: state.validDates,
       termsAccepted: state.termsAccepted,
       userInput,
       calculations,
@@ -131,6 +136,7 @@ export const Provider = ({ data, children }) => {
         onPaxSelect,
         onSelectDate,
         onSelectDates,
+        setInvalidDates,
         onSelectHotel,
         handleRFChange,
         submitBooking,
