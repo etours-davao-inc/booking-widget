@@ -61,7 +61,7 @@ export default () => {
         </div>
         <div className="twoGrid">
           <p>Option date for downpayment</p>
-          <p style={{textAlign: 'right'}}><strong>{optionDate}</strong></p>
+          <p style={{ textAlign: 'right' }}><strong>{optionDate}</strong></p>
         </div>
       </div>
     </ComputationWrapper>
@@ -69,7 +69,12 @@ export default () => {
 }
 
 const ComputationWrapper = styled.section`
-  font-size: 16px;
+  font-size: 14px;
+  
+  @media (min-width: 768px) {  
+  font-size:16px;
+  }
+
   .computationGrid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
