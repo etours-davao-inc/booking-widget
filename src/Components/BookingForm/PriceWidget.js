@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PaxSection from './PaxSection';
+import SelectPax from './SelectPax';
 import DatePickers from './DatePickers';
 import { BookingContext } from './Context';
 import SelectHotel from './SelectHotel';
@@ -19,15 +19,7 @@ export default () => {
       <form id="travel-information" style={styles.wrapper}>
         <h3>Travel information</h3>
         <div style={styles.twoColumns}>
-          <section>
-            <h4 style={styles.customh4}>Select number of persons</h4>
-            <div style={styles.pax}>
-              <PaxSection title="Adult" type="adults"></PaxSection>
-              <PaxSection title="Child (0-2 yrs)" type="kid02"></PaxSection>
-              <PaxSection title="Child (3-5 yrs)" type="kid35"></PaxSection>
-              <PaxSection title="Child (6-11 yrs)" type="kid611"></PaxSection>
-            </div>
-          </section>
+          <SelectPax />
           <section>
             {multiday &&
               <>
@@ -63,8 +55,6 @@ export default () => {
 
 const WrappedComputation = () => <div style={styles.wrapper}><Computation /></div>
 const WrappedReservationForm = () => <div style={styles.wrapper}><ReservationForm /></div>
-const WrappedLoader = () => <div style={styles.wrapper}><Loader /></div>
-
 
 const styles = {
   wrapper: {
@@ -78,24 +68,11 @@ const styles = {
     gridTemplateColumns: 'repeat(auto-fill, minmax(min(350px, 100%), 1fr))',
     gridGap: '15px 55px',
   },
-  pax: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gridGap: '15px'
-  },
   customh4: {
     fontSize: '17px',
     padding: '8px 0',
     margin: '15px 0',
     color: 'black'
-  },
-  blur: {
-    WebkitFilter: 'blur(5px)',
-    MFilter: 'blur(5px)',
-    OFilter: 'blur(5px)',
-    msfilter: 'blur(5px)',
-    filter: 'blur(5px)',
-    backgroundColor: '#ccc',
   }
 }
 
