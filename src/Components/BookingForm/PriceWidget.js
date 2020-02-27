@@ -13,6 +13,7 @@ export default () => {
   const { data, userInput, validDates } = useContext(BookingContext);
   const multiday = data.type === "multiday";
   const daytour = data.type !== "multiday";
+  const allowHotelChoice = data.allow_hotelchoice;
   return (
     <>
       <form id="travel-information" style={styles.wrapper}>
@@ -46,16 +47,23 @@ export default () => {
             {multiday && <SelectHotel hotels={data.hotels} />}
           </section>
         </div>
-        {multiday && userInput.hotel.code && <Hotel {...userInput} />}
+        {allowHotelChoice && userInput.hotel.code && <Hotel {...userInput} />}
       </form>
-      {validDates && <WrappedComputation /> }
-      {validDates && <WrappedReservationForm /> }
+      { validDates ? 
+          <>
+            <WrappedComputation />
+            <WrappedReservationForm />
+          </>
+        :
+          <Loader />
+      }
     </>
   )
 };
 
 const WrappedComputation = () => <div style={styles.wrapper}><Computation /></div>
 const WrappedReservationForm = () => <div style={styles.wrapper}><ReservationForm /></div>
+const WrappedLoader = () => <div style={styles.wrapper}><Loader /></div>
 
 
 const styles = {
