@@ -8,6 +8,7 @@ export default () => {
 
   return (
     <>
+      <h3>Reservation Form</h3>
       <ReservationFormWrapper>
         <input type="text" name="name" placeholder="Name" value={userInput.name} required="required" onChange={e => actions.handleRFChange(e)} />
         <input type="email" name="email" placeholder="Email" value={userInput.email} required="required" onChange={e => actions.handleRFChange(e)} />
