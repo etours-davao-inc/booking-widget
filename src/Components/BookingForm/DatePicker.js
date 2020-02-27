@@ -33,20 +33,20 @@ const DatePicker = ({startDate, minDate, emitChange, valid}) => {
 
   return (
     <div style={styles.datepicker}>
-      <Select name="month" value={date.month} valid={valid} onChange={onChange}>
+      <Select name="month" value={date.month} valid={valid} onChange={onChange} aria-label="select month">
         {months.map((month, key) => {
           let disable = key < startingDate.month && startingDate.year === date.year
           return <option value={key} key={key} disabled={disable}>{month}</option> 
         })}
       </Select>
-      <Select name="day" value={date.day} valid={valid} onChange={onChange}>
+      <Select name="day" value={date.day} valid={valid} onChange={onChange} aria-label="select day">
         {[...Array(daysOfMonth).keys()].map(day => {
           let value = day + 1;
           let disable = value < startingDate.day && startingDate.year === date.year && startingDate.month === date.month
           return <option value={value} key={value} disabled={disable}>{value}</option>
         })}
       </Select>
-      <Select name="year" value={date.year} valid={valid} onChange={onChange}>
+      <Select name="year" value={date.year} valid={valid} onChange={onChange} aria-label="select year">
         {years.map(year => <option value={year} key={year}>{year}</option>)}
       </Select>
       {/* <p>{format(new Date(date.year, date.month, date.day), 'MM/dd/yyyy')}</p> */}
