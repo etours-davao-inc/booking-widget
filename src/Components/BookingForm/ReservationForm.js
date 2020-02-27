@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { ButtonGroup, Button } from './Buttons';
 import { BookingContext } from './Context';
 
 export default () => {
