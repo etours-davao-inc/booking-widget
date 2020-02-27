@@ -25,7 +25,8 @@ export default ({data, plusMaxDays}) => {
         actions.onSelectDates(newState)
         return newState
       } else {
-        setValid(false)
+        setValid(false);
+        actions.setInvalidDates();
         setError(`Require minimum of ${duration} days and maximum of ${days} days`)
         return newState
       }
@@ -35,8 +36,9 @@ export default ({data, plusMaxDays}) => {
   return (
     <div>
       <div style={styles.dates}>
-        <p style={{fontSize: '15px', margin: '0 auto'}}>Arrival date</p>
-        <DatePicker 
+        <label htmlFor="from" style={{fontSize: '15px', margin: '0 auto'}}>Arrival date</label>
+        <DatePicker
+          id="from"
           startDate={userInput.startDate}
           key={state.from} 
           minDate={state.from}
@@ -45,8 +47,9 @@ export default ({data, plusMaxDays}) => {
         />
       </div>
       <div style={styles.dates}>
-        <p style={{fontSize: '15px', margin: '0 auto'}}>Departure date</p>
+        <label htmlFor="to" style={{fontSize: '15px', margin: '0 auto'}}>Departure date</label>
         <DatePicker 
+          id="to"
           startDate={userInput.startDate}
           key={state.to} 
           minDate={state.to}
