@@ -9,8 +9,8 @@ export default () => {
   let optionDate = userInput.optionDate ? format(userInput.optionDate, 'MMMM d, yyyy') : format(new Date(), 'MMMM d, yyyy')
   return (
     <ComputationWrapper>
-      <h3 className="m-0 py-3 font-weight-bold">Summary</h3>
-      <p style={{ marginBottom: '3px' }}>Name: <strong>{data.name}</strong></p>
+      <h3>Summary</h3>
+      <p>Name: <strong>{data.name}</strong></p>
       <p>Duration: <strong>{data.hotels ? `${userInput.tourDates.days} days and ${userInput.tourDates.nights} 
       nights` : data.duration_text}</strong></p>
       <div id="summary_wrapper">
