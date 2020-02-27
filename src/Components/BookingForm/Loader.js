@@ -2,70 +2,59 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default () => (
-  <div style={{minHeight: '300px', backgroundColor: 'white'}} className="responsive-widths my-2 rounded d-flex justify-content-center align-items-center"> 
-    <Loader>
+  <Loader>
+    <div class="lds-facebook">
       <div></div>
       <div></div>
       <div></div>
-      <div></div>
-    </Loader>
-  </div>
+    </div>
+  </Loader>
 )
 
 const Loader = styled.div`
-.lds-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 150px;
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 2px;
+  .lds-facebook {
     display: inline-block;
     position: relative;
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
   }
-  .lds-ellipsis div {
+  .lds-facebook div {
+    display: inline-block;
     position: absolute;
-    top: 27px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: white;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    left: 8px;
+    width: 16px;
+    background: #ecf0f1;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   }
-  .lds-ellipsis div:nth-child(1) {
-    left: 6px;
-    animation: lds-ellipsis1 0.6s infinite;
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
   }
-  .lds-ellipsis div:nth-child(2) {
-    left: 6px;
-    animation: lds-ellipsis2 0.6s infinite;
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
   }
-  .lds-ellipsis div:nth-child(3) {
-    left: 26px;
-    animation: lds-ellipsis2 0.6s infinite;
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
   }
-  .lds-ellipsis div:nth-child(4) {
-    left: 45px;
-    animation: lds-ellipsis3 0.6s infinite;
-  }
-  @keyframes lds-ellipsis1 {
+  @keyframes lds-facebook {
     0% {
-      transform: scale(0);
+      top: 8px;
+      height: 64px;
     }
-    100% {
-      transform: scale(1);
-    }
-  }
-  @keyframes lds-ellipsis3 {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(0);
-    }
-  }
-  @keyframes lds-ellipsis2 {
-    0% {
-      transform: translate(0, 0);
-    }
-    100% {
-      transform: translate(19px, 0);
+    50%, 100% {
+      top: 24px;
+      height: 32px;
     }
   }
 `
