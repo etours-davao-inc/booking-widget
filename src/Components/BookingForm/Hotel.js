@@ -21,11 +21,16 @@ export default ({tourDates, hotel, adults}) => {
 }
 
 const HotelWrapper = styled.div`
-  font-size: 18px;
-  margin: 25px 5px;
   display: grid;
-  grid-template-columns: 120px 1fr;
   grid-gap: 5px;
+  font-size: 14px;
+  grid-template-columns: 75px 1fr;
+  @media (min-width: 768px) {  
+  font-size:18px;
+  grid-template-columns: 120px 1fr;
+  }
+
+  margin: 25px 5px;
   margin-bottom: 15px;
   align-items: top;
   border-radius: 2px;
@@ -40,10 +45,13 @@ const HotelName = styled.p`
   text-transform: 'capitalize';
 `
 const PriceLabel = styled.span`
-  font-size: 18px;
+  font-size: 1em;
 `
 const Image = styled.img`
-  width: 120px;
+  width: 75px;
+  @media (min-width: 768px) {  
+    width: 120px;
+  }
   border-radius: 1px;
 `
 
