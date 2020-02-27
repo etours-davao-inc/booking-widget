@@ -6,8 +6,8 @@ const SelectHotel = ({ hotels }) => {
   const { actions } = useContext(BookingContext)
   return (
     <div style={{}}>
-      <p className="p-0 m-0">Select Accommodation</p>
-      <Select style={styles.select} onChange={(e) => actions.onSelectHotel(e.target.value)}>
+      <label for="select-hotels" style={styles.label}>Select Accommodation</label>
+      <Select id="select-hotels" style={styles.select} onChange={(e) => actions.onSelectHotel(e.target.value)}>
         <option value={""} key={0}>Tour Only</option>
         {hotels.map(({code, name, price}) => <option key={code} value={code}>{name.toLowerCase()}</option>)}
       </Select>
@@ -19,6 +19,10 @@ const styles = {
   select: {
     width: '100%',
     textTransform: 'capitalize',
+  },
+  label: {
+    padding: 0,
+    margin: 0
   }
 }
 

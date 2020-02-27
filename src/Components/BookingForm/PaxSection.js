@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Select from './SelectStyles';
 import { BookingContext } from './Context';
 
-const PaxSection = ({ title, type }) => {
+const PaxSection = ({ title, type, label }) => {
   const { prices, userInput, actions } = useContext(BookingContext);
   const onSelectChange = ({ target }) => {
     actions.onPaxSelect({ [type]: prices[type].find(item => item[0] === Number(target.value)) });
@@ -11,8 +11,8 @@ const PaxSection = ({ title, type }) => {
 
   return (
     <Section>
-      <Title>{title}</Title>
-      <Select value={userInput[type][0]} onChange={onSelectChange}>
+      <Title aria-hidden="true">{title}</Title>
+      <Select value={userInput[type][0]} onChange={onSelectChange} aria-label={label}>
         {prices[type].map((item) => {
           let pax = item[0]
           return <option key={pax} value={pax}>{pax}</option>
