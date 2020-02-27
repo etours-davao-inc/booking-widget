@@ -8,6 +8,7 @@ import ReservationForm from './ReservationForm';
 import Hotel from './Hotel';
 import DatePicker from './DatePicker';
 import Loader from './Loader';
+import Terms from './Terms'; 
 
 export default () => {
   const { data, userInput, validDates } = useContext(BookingContext);
@@ -44,6 +45,7 @@ export default () => {
       { validDates ? 
           <>
             <WrappedComputation />
+            <WrappedTerms />
             <WrappedReservationForm />
           </>
         :
@@ -54,6 +56,7 @@ export default () => {
 };
 
 const WrappedComputation = () => <div style={styles.wrapper}><Computation /></div>
+const WrappedTerms = () => <div style={styles.wrapper}><Terms /></div>
 const WrappedReservationForm = () => <div style={styles.wrapper}><ReservationForm /></div>
 
 const styles = {
