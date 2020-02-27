@@ -16,7 +16,7 @@ export default () => {
         <textarea name="remarks" placeholder="Extra notes" value={userInput.remarks} rows={4} onChange={e => actions.handleRFChange(e)} aria-label="other remarks" />
         <div id="terms_and_conditions">
           <input id="terms_checkbox" name="terms" type="checkbox" required="required" checked={termsAccepted} onChange={e => actions.handleRFChange(e)} />
-          <label htmlFor="terms_checkbox">Yes, I have read and agree with the terms and conditions below.</label>
+          <label htmlFor="terms_checkbox">Yes, I have read and agree with the terms and conditions above.</label>
         </div>
       </ReservationFormWrapper>
       <ButtonGroup>
