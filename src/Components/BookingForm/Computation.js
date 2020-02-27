@@ -86,6 +86,12 @@ const ComputationWrapper = styled.section`
     border-bottom: none;
   }
 
+  .twoGrid p:last-child {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
   .computationGrid p {
     padding: 4px;
     margin: 0;
