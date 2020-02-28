@@ -4,7 +4,7 @@ import { addDays, differenceInCalendarDays } from 'date-fns';
 import isEmail from 'validator/lib/isEmail';
 
 import { Calculate } from 'price-compute-js';
-import PostReservation from './PostReservation';
+import { sendReservation } from 'firebase-etours-booking-crud';
 
 import { setOptionPaymentDate } from 'tour-dates-utility';
 
@@ -12,7 +12,7 @@ export const BookingContext = React.createContext();
 
 export const Provider = ({ data, children }) => {
   const today = new Date();
-  const { name, code, slug, type, duration, duration_text, info, responsibilities, terms } = data
+  const { name, code, slug, type, duration, duration_text, info, terms } = data
   const { startday, offsetnights } = data;
 
   const InitialUserInput = {
@@ -48,8 +48,8 @@ export const Provider = ({ data, children }) => {
     })
   }
 
-  const [state, setState] = useState({ data: data, RFValid: false, termsAccepted: false, validDates: true })
-  const [tourpackage] = useState({ name, code, slug, type, duration, duration_text, info, responsibilities, terms })
+  const [state, setState] = useState({ data: data, RFValid: false, termsAccepted: false, validDates: true, status:'on' })
+  const [tourpackage] = useState({ name, code, slug, type, duration, duration_text, info, terms })
   const [userInput, setUserInput] = useState(InitialUserInput)
 
   const [calculations, setCalculations] = useState(Calculate(userInput));
@@ -112,21 +112,26 @@ export const Provider = ({ data, children }) => {
 
   const submitBooking = (e) => {
     e.preventDefault();
-    if (state.RFValid) {
+      if (state.RFValid) {
       console.log(state, userInput, calculations, tourpackage)
-      // PostReservation({
-      //   input: userInput,
-      //   calculations: calculations,
-      //   package: tourpackage
-      // })   
-    } else {
-      alert("Error submitting your reservation")
+      sendReservation({
+        input: userInput,
+        calculations: calculations,
+        package: tourpackage
+      }).then(obj => {
+        console.log(obj)
+        setState({...state, status:'done'})
+      }).catch(error => {
+        setState({...state, status:'error'})
+      })  
     }
   }
 
   const doComputations = (payload) => {
     setCalculations(Calculate(payload))
   }
+
+  const refreshForm = () => setState({...state, status: 'on'})
 
   return (
     <BookingContext.Provider value={{
@@ -135,6 +140,7 @@ export const Provider = ({ data, children }) => {
       RFValid: state.RFValid,
       validDates: state.validDates,
       termsAccepted: state.termsAccepted,
+      status: state.status,
       userInput,
       calculations,
       actions: {
@@ -145,6 +151,7 @@ export const Provider = ({ data, children }) => {
         onSelectHotel,
         handleRFChange,
         submitBooking,
+        refreshForm,
       }
     }}>
       {children}
