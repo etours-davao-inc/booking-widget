@@ -32,7 +32,11 @@ export default () => {
               <>
                 <h4 style={styles.customh4}>Select tour date</h4>
                 <label htmlFor="tourdate" style={{ fontSize: '15px', margin: '0 auto' }}>Tour date</label>
-                <DatePicker id="tourdate" emitChange={date => actions.onSelectDate(date)} />
+                <DatePicker 
+                  id="tourdate"
+                  startDate={userInput.startDate}
+                  minDate={userInput.startDate}
+                  emitChange={date => actions.onSelectDate(date)} />
               </>
             }
           </section>

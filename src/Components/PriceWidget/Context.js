@@ -58,7 +58,8 @@ export const Provider = ({ data, children }) => {
     InitialUserInput.hotel = { code: "", price: 0, name: "", photo: "" };
     InitialUserInput.startDate = tourDates.from
   } else {
-    InitialUserInput.tourDate = addDays(today, startday);
+    InitialUserInput.tourDate = addDays(today, startday)
+    InitialUserInput.startDate = addDays(today, startday)
     InitialUserInput.optionDate = formatDateToString(today)
   }
 
@@ -94,7 +95,7 @@ export const Provider = ({ data, children }) => {
   }
 
   const onSelectHotel = (payload) => {
-    if (payload) {
+    if (payload !== "") {
       setUserInput({ ...userInput, hotel: state.data.hotels.find(hotel => hotel.code === payload) })
       doComputations({ ...userInput, hotel: state.data.hotels.find(hotel => hotel.code === payload) })
     } else {
@@ -125,7 +126,6 @@ export const Provider = ({ data, children }) => {
   }
 
   const submitBooking = (e) => {
-    console.log('here')
     e.preventDefault();
       if (state.RFValid) {
       const packagedInput = {
@@ -140,7 +140,6 @@ export const Provider = ({ data, children }) => {
       } else {
         packagedInput.tourDate = formatDateToString(userInput.tourDate)
       }
-      console.log(packagedInput)
       SendReservation({
         input: packagedInput,
         calculations: calculations,
@@ -159,7 +158,10 @@ export const Provider = ({ data, children }) => {
     setCalculations(Calculate(payload))
   }
 
-  const refreshForm = () => setState({...state, status: 'on'})
+  const refreshForm = () => { 
+    setUserInput({...InitialUserInput})
+    setState({...state, RFValid: false, termsAccepted: false, validDates: true, status:'on'});
+  }
 
   return (
     <BookingContext.Provider value={{
