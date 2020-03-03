@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BookingForm from './Components/BookingForm';
+import PriceWidget from './Components/PriceWidget';
 
 export default {
   mount: (data) => {
-    const bookingFormWrapper = document.getElementById('bookingForm');
+    const bookingFormWrapper = document.getElementById('pricewidget');
     bookingFormWrapper.innerHTML = ""
-    ReactDOM.render(<BookingForm data={data} />, bookingFormWrapper);
+    ReactDOM.render(<PriceWidget data={data} />, bookingFormWrapper);
   }
 }

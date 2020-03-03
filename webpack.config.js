@@ -1,11 +1,11 @@
 module.exports = {
   entry: {
-    bookingForm: './src/index.js'
+    pricewidget: './src/index.js'
   },
   output: {
     filename: '[name].js',
     path: __dirname + '/dist',
-    library: "bookingForm",
+    library: "pricewidget",
     libraryTarget: 'umd',
     libraryExport: 'default'
   },
