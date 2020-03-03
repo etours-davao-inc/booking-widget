@@ -9,6 +9,7 @@ module.exports = {
     libraryTarget: 'umd',
     libraryExport: 'default'
   },
+  devtool: 'source-map',
   devServer: {
     inline: true,
     contentBase: "./dist",
