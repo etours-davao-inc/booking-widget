@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Select from './SelectStyles';
-import { format } from 'date-fns'
 
 const DatePicker = ({startDate, minDate, emitChange, valid}) => {
   const initialDate = {
