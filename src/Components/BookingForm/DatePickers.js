@@ -72,7 +72,7 @@ const styles = {
     margin: '0 0 15px 0'
   },
   error: {
-    color: 'red',
+    color: '#d35400',
   },
   dateNotes: {
     fontSize: '14px',

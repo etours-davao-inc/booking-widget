@@ -61,6 +61,7 @@ const WrappedReservationForm = () => <div style={styles.wrapper}><ReservationFor
 
 const styles = {
   wrapper: {
+    width: '100%',
     padding: '18px',
     marginTop: '8px',
     backgroundColor: 'white',
@@ -69,7 +70,7 @@ const styles = {
   twoColumns: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
-    gridGap: '15px 55px',
+    gridGap: '15px 45px',
   },
   customh4: {
     fontSize: '17px',
