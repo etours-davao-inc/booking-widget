@@ -1,14 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Select from './SelectStyles';
 import { BookingContext } from './Context';
 
 const SelectHotel = ({ hotels }) => {
-  const { actions } = useContext(BookingContext)
+  const { actions, userInput } = useContext(BookingContext)
+  const { hotel } = userInput;
   return (
     <div style={{}}>
       <label htmlFor="select-hotels" style={styles.label}>Select Accommodation</label>
-      <Select id="select-hotels" style={styles.select} onChange={(e) => actions.onSelectHotel(e.target.value)}>
-        <option value={""} key={0}>Tour Only</option>
+      <Select id="select-hotels" style={styles.select} value={hotel.code} onChange={(e) => actions.onSelectHotel(e.target.value)}>
+        <option value={""} key={""}>Tour Only</option>
         {hotels.map(({code, name, price}) => <option key={code} value={code}>{name.toLowerCase()}</option>)}
       </Select>
     </div>
