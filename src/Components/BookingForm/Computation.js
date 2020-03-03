@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 
 export default () => {
   const { data, userInput, calculations } = useContext(BookingContext);
-  let optionDate = userInput.optionDate ? format(userInput.optionDate, 'MMMM d, yyyy') : format(new Date(), 'MMMM d, yyyy')
+
   return (
     <ComputationWrapper>
       <h3>Summary</h3>
@@ -52,16 +52,16 @@ export default () => {
           <p><Currency quantity={calculations.total.total} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="twoGrid">
-          <p className="computationTotalBalance">Required downpayment to confirm your reservation</p>
+          <p className="computationTotalBalance">Required 50% downpayment</p>
           <p><Currency quantity={calculations.total.downpayment} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="twoGrid">
-          <p className="computationTotalBalance">Balance to be paid on the first day of your tour</p>
+          <p className="computationTotalBalance">Balance due on the first day of your tour</p>
           <p><Currency quantity={calculations.total.balance} currency="PHP" pattern="!##,### " /></p>
         </div>
         <div className="twoGrid">
           <p>Option date for downpayment</p>
-          <p style={{ textAlign: 'right' }}><strong>{optionDate}</strong></p>
+          <p style={{ textAlign: 'right' }}><strong><small>{userInput.optionDate}</small></strong></p>
         </div>
       </div>
     </ComputationWrapper>
