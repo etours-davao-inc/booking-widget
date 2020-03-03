@@ -60,7 +60,7 @@ export default ({data, plusMaxDays}) => {
         style={valid ? styles.dateNotes : {...styles.dateNotes, ...styles.error}} 
         id="dates-notes"
       >
-        Travel dates requires a minimum of {duration} days and maximum of {state.days} from arrival date to departure date
+        Travel dates requires a minimum of {duration} days and maximum of {maxDays} from arrival date to departure date
       </p>
     </div>
   )
