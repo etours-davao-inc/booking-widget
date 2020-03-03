@@ -67,7 +67,7 @@ const ReservationFormWrapper = styled.form`
 
   #terms_and_conditions input[type=checkbox]  {
     align-self: top;
-    transform: scale(2.5);
+    transform: scale(1.3);
     width: auto;   
     padding: 0;
     margin: 0 15px 0 10px; 
