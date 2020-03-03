@@ -4,7 +4,7 @@ import { BookingContext } from "./Context";
 export default () => {
   const { data } = useContext(BookingContext);
   return (
-    <div>
+    <div style={{fontSize: '.9em'}}>
       <h3>Terms and conditions</h3>
       <div dangerouslySetInnerHTML={{ __html: data.terms }} />
       <h3>Etours responsibilites</h3>
