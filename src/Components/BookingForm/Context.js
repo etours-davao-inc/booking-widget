@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { addDays, differenceInCalendarDays, differenceInDays, subDays, format } from 'date-fns';
 import isEmail from 'validator/lib/isEmail';
 
-import { Calculate } from 'price-compute-js';
-import { sendReservation } from 'firebase-etours-booking-crud';
+import { Calculate } from '../../../../total-price-calculator/index';
+import SendReservation from '../../SendReservation';
 
 export const BookingContext = React.createContext();
 
@@ -141,16 +141,17 @@ export const Provider = ({ data, children }) => {
         packagedInput.tourDate = formatDateToString(userInput.tourDate)
       }
       console.log(packagedInput)
-      // sendReservation({
-      //   input: packagedInput,
-      //   calculations: calculations,
-      //   package: tourpackage
-      // }).then(obj => {
-      //   console.log(obj)
-      //   setState({...state, status:'done'})
-      // }).catch(error => {
-      //   setState({...state, status:'error'})
-      // })  
+      SendReservation({
+        input: packagedInput,
+        calculations: calculations,
+        package: tourpackage
+      }).then(obj => {
+        setState({...state, status:'done'})
+      }).catch(error => {
+        alert('Error Sending Booking')
+        console.error("Error Sending Reservation", error)
+        setState({...state, status:'error'})
+      })  
     }
   }
 
