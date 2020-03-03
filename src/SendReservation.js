@@ -8,8 +8,10 @@ firebase.initializeApp(fireBaseConfig);
 
 const db = firebase.firestore().collection(dbName)
 
-export const SendReservation = payload => db.add(payload).then(bookingID => {
+const SendReservation = payload => db.add(payload).then(bookingID => {
   return bookingID;
 }).catch( (error) => {
   throw new error("Booking posting problem");
 })
+
+export default SendReservation;
