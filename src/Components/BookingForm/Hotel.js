@@ -2,21 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import Currency from 'react-currency-formatter';
 import numeral from 'numeral';
+import { Animated } from "react-animated-css";
 
-export default ({tourDates, hotel, adults}) => {
+export default ({ tourDates, hotel, adults }) => {
   let nights = tourDates.nights > 1 ? 'nights' : 'night';
   let adultPrice = (tourDates.hotelNights * hotel.price) + adults[1];
-  let price = <Currency quantity={adultPrice} currency="PHP" pattern="!##,### "/>;
+  let price = <Currency quantity={adultPrice} currency="PHP" pattern="!##,### " />;
   const format = (price) => `₱${numeral(price).format('0,0')}`
   return (
-    <HotelWrapper>
-      <Image src={hotel.photo} />
-      <div style={{padding: '5px'}}>
-        <HotelName style={{textTransform: 'capitalize'}}>{hotel.name.toLowerCase()}</HotelName>
-        <p>{`${tourDates.nights} ${nights}`}</p>
-        <PriceLabel>{`${format(adults[1])} + (${format(hotel.price)} x ${tourDates.hotelNights} ${nights}) = ${format(adultPrice)}`}</PriceLabel>
-      </div>
-    </HotelWrapper>
+    <Animated key={hotel.code} animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
+      <HotelWrapper>
+        <Image src={hotel.photo} />
+        <div style={{ padding: '5px' }}>
+          <HotelName style={{ textTransform: 'capitalize' }}>{hotel.name.toLowerCase()}</HotelName>
+          <p>{`${tourDates.nights} ${nights}`}</p>
+          <Animated key={adultPrice} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+            <PriceLabel>{`${format(adults[1])} + (${format(hotel.price)} x ${tourDates.hotelNights} ${nights}) = ${format(adultPrice)}`}</PriceLabel>
+          </Animated>
+        </div>
+      </HotelWrapper>
+    </Animated>
   )
 }
 
