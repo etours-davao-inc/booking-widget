@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "date-fns": "^2.0.0",
+    "firebase": "^7.9.3",
     "firebase-etours-booking-crud": "/Users/t0mclaudio/Documents/Projects/etours-website/firebase-etours-booking-crud",
     "numeral": "^2.0.6",
     "price-compute-js": "/Users/t0mclaudio/Documents/Projects/etours-website/total-price-calculator",
