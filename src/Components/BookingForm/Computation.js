@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Currency from 'react-currency-formatter';
 import styled from 'styled-components';
 import { BookingContext } from './Context';
-import { format } from 'date-fns'
 
 export default () => {
   const { data, userInput, calculations } = useContext(BookingContext);
