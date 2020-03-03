@@ -11,7 +11,7 @@ import Loader from './Loader';
 import Terms from './Terms'; 
 
 export default () => {
-  const { data, userInput, validDates } = useContext(BookingContext);
+  const { data, userInput, validDates, actions } = useContext(BookingContext);
   const multiday = data.type === "multiday";
   const daytour = data.type !== "multiday";
   const allowHotelChoice = data.allow_hotelchoice;
@@ -32,7 +32,7 @@ export default () => {
               <>
                 <h4 style={styles.customh4}>Select tour date</h4>
                 <label htmlFor="tourdate" style={{ fontSize: '15px', margin: '0 auto' }}>Tour date</label>
-                <DatePicker id="tourdate" />
+                <DatePicker id="tourdate" emitChange={date => actions.onSelectDate(date)} />
               </>
             }
           </section>
