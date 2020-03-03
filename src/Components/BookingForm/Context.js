@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
-import { addDays, differenceInCalendarDays } from 'date-fns';
-
+import { addDays, differenceInCalendarDays, differenceInDays, subDays, format } from 'date-fns';
 import isEmail from 'validator/lib/isEmail';
 
 import { Calculate } from 'price-compute-js';
 import { sendReservation } from 'firebase-etours-booking-crud';
 
-import { setOptionPaymentDate } from 'tour-dates-utility';
-
 export const BookingContext = React.createContext();
+
+const setOptionPaymentDate = (today, startDate) => {
+  return new Promise((resolve, reject) => {
+    let optionDate;
+    let daysFromStartDay = differenceInDays(startDate, today);
+    if (daysFromStartDay >= 30) {
+      optionDate = subDays(startDate, 15)
+    } else if ( daysFromStartDay > 13 && daysFromStartDay < 30 ) {
+      optionDate = subDays(startDate, 14)
+    } else if ( daysFromStartDay > 7 && daysFromStartDay < 14 ) {
+      optionDate = subDays(startDate, 7)
+    } else if ( daysFromStartDay <= 7 && daysFromStartDay >= 5 ) {
+      optionDate = addDays(today, 1)
+    } else if ( daysFromStartDay < 5 ) {
+      optionDate = today;
+    }
+    resolve(formatDateToString(optionDate));
+  })
+} 
+
+const formatDateToString = (date) => `${format(date, "MMMM dd, yyyy - EEEE")} (Philippine Time)` 
+
 
 export const Provider = ({ data, children }) => {
   const today = new Date();
@@ -16,7 +35,7 @@ export const Provider = ({ data, children }) => {
   const { startday, offsetnights } = data;
 
   const InitialUserInput = {
-    inquiryDate: today,
+    inquiryDate: formatDateToString(today),
     adults: data.price.adults[0],
     kid02: [0, 0],
     kid35: [0, 0],
@@ -30,9 +49,7 @@ export const Provider = ({ data, children }) => {
   if (type === 'multiday') {
     const tourDates = {};
     tourDates.from = addDays(today, startday);
-    setOptionPaymentDate(today, tourDates.from).then(date => {
-      InitialUserInput.optionDate = date;
-    })
+    InitialUserInput.optionDate = formatDateToString(today)
     tourDates.to = addDays(tourDates.from, duration - 1);
     tourDates.days = differenceInCalendarDays(tourDates.to, tourDates.from) + 1;
     tourDates.nights = tourDates.days - 1;
@@ -42,10 +59,7 @@ export const Provider = ({ data, children }) => {
     InitialUserInput.startDate = tourDates.from
   } else {
     InitialUserInput.tourDate = addDays(today, startday);
-    setOptionPaymentDate(today, InitialUserInput.tourDate).then(date => {
-      InitialUserInput.optionDate = date
-
-    })
+    InitialUserInput.optionDate = formatDateToString(today)
   }
 
   const [state, setState] = useState({ data: data, RFValid: false, termsAccepted: false, validDates: true, status:'on' })
@@ -58,20 +72,20 @@ export const Provider = ({ data, children }) => {
     setUserInput({ ...userInput, ...payload })
     doComputations({ ...userInput, ...payload })
   }
-
+ 
   const onSelectDate = (tourDate) => {
-    setOptionPaymentDate(userInput.inquiryDate, payload).then(optionDate => {
+    setOptionPaymentDate(today, tourDate).then(optionDate => {
       setUserInput({ ...userInput, tourDate, optionDate })
-      doComputations({ ...userInput, tourDate, optionDate })
+      doComputations({ ...userInput})
     })
 
   }
 
   const onSelectDates = (tourDates) => {
-    setOptionPaymentDate(userInput.inquiryDate, tourDates.from).then(optionDate => {
+    setOptionPaymentDate(today, tourDates.from).then(optionDate => {
       setState({...state, validDates: true})
       setUserInput({ ...userInput, tourDates, optionDate })
-      doComputations({ ...userInput, tourDates, optionDate })
+      doComputations({ ...userInput, tourDates})
     })
   }
 
@@ -111,19 +125,32 @@ export const Provider = ({ data, children }) => {
   }
 
   const submitBooking = (e) => {
+    console.log('here')
     e.preventDefault();
       if (state.RFValid) {
-      console.log(state, userInput, calculations, tourpackage)
-      sendReservation({
-        input: userInput,
-        calculations: calculations,
-        package: tourpackage
-      }).then(obj => {
-        console.log(obj)
-        setState({...state, status:'done'})
-      }).catch(error => {
-        setState({...state, status:'error'})
-      })  
+      const packagedInput = {
+        ...userInput,
+      }
+      if (tourpackage.type === 'multiday') {
+        packagedInput.tourDates = {
+          ...userInput.tourDates,
+          from: formatDateToString(userInput.tourDates.from),
+          to: formatDateToString(userInput.tourDates.to),
+        }
+      } else {
+        packagedInput.tourDate = formatDateToString(userInput.tourDate)
+      }
+      console.log(packagedInput)
+      // sendReservation({
+      //   input: packagedInput,
+      //   calculations: calculations,
+      //   package: tourpackage
+      // }).then(obj => {
+      //   console.log(obj)
+      //   setState({...state, status:'done'})
+      // }).catch(error => {
+      //   setState({...state, status:'error'})
+      // })  
     }
   }
 
