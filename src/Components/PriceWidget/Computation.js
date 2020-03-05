@@ -10,7 +10,7 @@ export default () => {
   return (
 
     <ComputationWrapper>
-      <h3>Summary</h3>
+      <h3 style={styles.h3}>Summary</h3>
       <p>Name: <strong>{data.name}</strong></p>
       <p>Duration: <strong>{data.hotels ? `${userInput.tourDates.days} days and ${userInput.tourDates.nights} 
       nights` : data.duration_text}</strong></p>
@@ -69,6 +69,13 @@ export default () => {
       </Animated>
     </ComputationWrapper>
   )
+}
+
+const styles = {
+  h3: {
+    color: '#d35400',
+    fontSize: '17px'
+  }
 }
 
 const ComputationWrapper = styled.section`

@@ -9,7 +9,7 @@ export default () => {
     <>
       {status === "on" &&
         <>
-          <h3>Reservation Form</h3>
+          <h3 style={{color: '#d35400',fontSize: '17px'}}>Reservation Form</h3>
           <ReservationFormWrapper onSubmit={(e) => actions.submitBooking(e)}>
             <input type="text" name="name" placeholder="Name" value={userInput.name} required="required" onChange={e => actions.handleRFChange(e)} aria-label="name" />
             <input type="email" name="email" placeholder="Email" value={userInput.email} required="required" onChange={e => actions.handleRFChange(e)} aria-label="email address" />
@@ -43,6 +43,7 @@ export default () => {
 const ReservationFormWrapper = styled.form`
   padding: 10px;
   font-size: 16px;
+
   input {
     margin-bottom: 12px;
     width: 100%;

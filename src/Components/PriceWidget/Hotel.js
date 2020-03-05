@@ -26,6 +26,7 @@ export default ({ tourDates, hotel, adults }) => {
 }
 
 const HotelWrapper = styled.div`
+  background-color: white;
   display: grid;
   grid-gap: 5px;
   font-size: 14px;
@@ -38,7 +39,7 @@ const HotelWrapper = styled.div`
   margin: 25px 5px;
   margin-bottom: 15px;
   align-items: top;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 5px;
   border: 1px solid green;
 `

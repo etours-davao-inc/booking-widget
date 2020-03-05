@@ -17,8 +17,8 @@ export default () => {
   const allowHotelChoice = data.allow_hotelchoice;
   return (
     <>
-      <form id="travel-information" style={styles.wrapper}>
-        <h3>Travel information</h3>
+      <form id="travel-information" style={{...styles.wrapper, ...styles.form}}>
+        <h3 style={styles.h3}>Travel information</h3>
         <div style={styles.twoColumns}>
           <SelectPax />
           <section>
@@ -64,12 +64,15 @@ const WrappedTerms = () => <div style={styles.wrapper}><Terms /></div>
 const WrappedReservationForm = () => <div style={styles.wrapper}><ReservationForm /></div>
 
 const styles = {
+  form: {
+    backgroundColor: '#F5D76E',
+  },
   wrapper: {
     width: '100%',
     padding: '18px',
     marginTop: '8px',
-    backgroundColor: 'white',
     borderRadius: '2px',
+    backgroundColor:'rgba(236, 240, 241,0.50)',
   },
   twoColumns: {
     display: 'grid',
@@ -81,6 +84,10 @@ const styles = {
     padding: '8px 0',
     margin: '15px 0',
     color: 'black'
+  },
+  h3: {
+    color: '#d35400',
+    fontSize: '17px'
   }
 }
 
